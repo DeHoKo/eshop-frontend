@@ -1,11 +1,11 @@
 import React from "react";
-
+import { useParams } from "react-router-dom";
 //TODO: don't forget to delete
 import { jsonData } from "../goods";
 
 const Product = (props) => {
-  const productId = props.match.params.id;
-  const item = JSON.parse(jsonData).find((val) => val.id == productId);
+  const { id } = useParams();
+  const item = JSON.parse(jsonData).find((val) => val.id == id);
   return (
     <div>
       <img src={process.env.PUBLIC_URL + item.image} alt={item.model} />
