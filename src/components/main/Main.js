@@ -6,11 +6,7 @@ import Product from "./product/Product";
 import Filter from "./filter/Filter";
 import Back from "./back/Back";
 
-// TODO: don't forget to delete
-import { jsonData } from "./goods";
-
 const Main = () => {
-  const sneakers = JSON.parse(jsonData);
   return (
     <main>
       <Switch>
@@ -20,7 +16,7 @@ const Main = () => {
         </Route>
         <Route path="/">
           <Filter />
-          <Products sneakers={sneakers} />
+          <Products />
         </Route>
       </Switch>
     </main>
