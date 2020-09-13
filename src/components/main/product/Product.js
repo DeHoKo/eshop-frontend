@@ -20,8 +20,9 @@ const Product = () => {
   };
 
   return loading === false ? (
-    <div>
+    <div className="container mx-auto">
       <img
+        className="mx-auto"
         src={process.env.PUBLIC_URL + product.data.image}
         alt={product.data.model}
       />
