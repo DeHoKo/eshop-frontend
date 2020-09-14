@@ -3,10 +3,10 @@ import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { detailsProduct } from "../../../store/actions/productActions";
+import { addToCart } from "../../../store/actions/cartActions";
 
 const Product = () => {
   const { id } = useParams();
-  const history = useHistory();
   const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Product = () => {
   }, []);
 
   const addToCartHandler = () => {
-    history.push("/cart/" + id);
+    dispatch(addToCart(id));
   };
 
   return loading === false ? (

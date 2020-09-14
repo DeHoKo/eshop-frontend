@@ -44,7 +44,7 @@ const Header = () => {
               />
             </svg>
           </button>
-          <button className="px-4 h-full">
+          <Link to="/cart" className="flex items-center px-4 h-full">
             <svg
               className="w-5 h-5 xl:w-8 xl:h-8"
               viewBox="0 0 18 18"
@@ -56,7 +56,7 @@ const Header = () => {
                 fill="black"
               />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </header>
