@@ -6,8 +6,8 @@ import { removeFromCart } from "../../../store/actions/cartActions";
 
 const Cart = () => {
   const { cartItems, error } = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const checkOutHandler = () => {
     history.push("/signin?redirect=shipping");
@@ -31,16 +31,14 @@ const Cart = () => {
               <Link
                 to={"/products/" + item.id}
                 className="grid grid-cols-12"
-                onClick={removeHandler}
+                onClick={removeHandler(item.id)}
               >
                 <span className="col-span-1">{index + 1}.</span>
                 <span className="col-span-3">{item.category}</span>
                 <span className="col-span-2">{item.brand}</span>
                 <span className="col-span-4">{item.model}</span>
                 <span className="col-span-1">{item.price}$</span>
-                <button className="col-span-1" onClick={removeHandler(item.id)}>
-                  Remove
-                </button>
+                <button className="col-span-1">Remove</button>
               </Link>
             </li>
           ))}

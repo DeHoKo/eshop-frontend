@@ -1,9 +1,11 @@
 import axios from "axios";
 import * as actionTypes from "../actionTypes";
 
+import cookie from "js-cookie";
+
 const url = "http://localhost:3001";
 
-export const addToCart = (productId) => async (dispatch) => {
+export const addToCart = (productId) => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(url + "/api/products/" + productId);
     if (data.quantity > 0) {
@@ -18,6 +20,9 @@ export const addToCart = (productId) => async (dispatch) => {
           price: data.price,
         },
       });
+      const state = getState();
+      const cart = state.cart.cartItems;
+      cookie.set("cartItems", JSON.stringify(cart));
     } else {
       throw new Error("Not in stock");
     }
@@ -29,9 +34,12 @@ export const addToCart = (productId) => async (dispatch) => {
   }
 };
 
-export const removeFromCart = (productId) => {
-  return {
+export const removeFromCart = (productId) => (dispatch, getState) => {
+  dispatch({
     type: actionTypes.CART_REMOVE_ITEM,
     payload: productId,
-  };
+  });
+  const state = getState();
+  const cart = state.cart.cartItems;
+  cookie.set("cartItems", JSON.stringify(cart));
 };
