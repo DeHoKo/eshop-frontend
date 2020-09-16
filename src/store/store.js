@@ -4,7 +4,10 @@ import {
   productDetailsReducer,
 } from "./reducers/productReducers";
 import { cartReducer } from "./reducers/cartReducers";
-import { userSigninReducer } from "./reducers/userReducers";
+import {
+  userSigninReducer,
+  userRegisterReducer,
+} from "./reducers/userReducers";
 import thunk from "redux-thunk";
 import cookies from "js-cookie";
 
@@ -18,6 +21,7 @@ const reducer = combineReducers({
   productDetails: productDetailsReducer,
   cart: cartReducer,
   userSignin: userSigninReducer,
+  userRegister: userRegisterReducer,
 });
 
 const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

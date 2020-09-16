@@ -7,11 +7,15 @@ import Filter from "./filter/Filter";
 import Back from "./back/Back";
 import Cart from "./cart/Cart";
 import Signin from "./signin/Signin";
+import Register from "./register/Register";
 
 const Main = () => {
   return (
     <main className="min-h-screen">
       <Switch>
+        <Route path="/register">
+          <Register />
+        </Route>
         <Route path="/signin">
           <Signin />
         </Route>
