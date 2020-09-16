@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const userInfo = useSelector((state) => state.userSignin.userInfo);
   return (
     <header className="h-16 border-b-2 border-gray-200">
       <div className="container h-full mx-auto flex justify-between items-center ">
@@ -28,9 +30,21 @@ const Header = () => {
           E-Shop
         </Link>
         <div className="flex justify-end w-2/6 h-full">
-          <button className="hidden xl:block px-4 h-full xl:text-xl">
-            Sign In
-          </button>
+          {!userInfo ? (
+            <Link
+              to="/signin"
+              className="hidden lg:flex items-center px-4 h-full xl:text-xl"
+            >
+              Sign In
+            </Link>
+          ) : (
+            <Link
+              to="/cart"
+              className="hidden lg:flex items-center px-4 h-full xl:text-xl"
+            >
+              {userInfo.name}
+            </Link>
+          )}
           <button className="px-4 h-full">
             <svg
               className="w-5 h-5 xl:w-8 xl:h-8"
