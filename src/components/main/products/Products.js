@@ -25,7 +25,7 @@ const Products = () => {
                 </h2>
                 <p className="text-xs xl:text-xl mb-1">{item.category}</p>
                 <p className="text-xs xl:text-xl mb-1">
-                  {item.sizes.map((val) => val.us).join(" ")}
+                  {item.sizes.map((val) => val).join(" ")}
                 </p>
                 <p className="font-bold xl:text-xl text-xs">{item.price}$</p>
               </div>

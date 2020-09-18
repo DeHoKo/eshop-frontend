@@ -56,7 +56,7 @@ const Product = () => {
         </h2>
         <p className="text-lg xl:text-xl mb-1">{product.data.category}</p>
         <p className="text-lg xl:text-xl mb-1">
-          US: {product.data.sizes.map((val) => val.us).join(" ")}
+          US: {product.data.sizes.map((val) => val).join(" ")}
         </p>
         <p className="font-bold text-lg xl:text-xl">{product.data.price}$</p>
       </div>
