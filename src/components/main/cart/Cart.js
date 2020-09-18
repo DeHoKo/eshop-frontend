@@ -27,11 +27,11 @@ const Cart = () => {
       {cartItems.length > 0 ? (
         <ul>
           {cartItems.map((item, index) => (
-            <li key={item.id} className="mt-2">
+            <li key={item._id} className="mt-2">
               <Link
-                to={"/products/" + item.id}
+                to={"/products/" + item._id}
                 className="grid grid-cols-12"
-                onClick={removeHandler(item.id)}
+                onClick={removeHandler(item._id)}
               >
                 <span className="col-span-1">{index + 1}.</span>
                 <span className="col-span-3">{item.category}</span>
