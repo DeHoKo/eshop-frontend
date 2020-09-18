@@ -13,6 +13,23 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
+export const saveProduct = (product) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: actionTypes.PRODUCT_SAVE_REQUEST });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    const data = await axios.post(url + "/api/products", product, {
+      headers: {
+        Authorization: "Bearer " + userInfo.token,
+      },
+    });
+    dispatch({ type: actionTypes.PRODUCT_SAVE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: actionTypes.PRODUCT_SAVE_FAIL, payload: error.message });
+  }
+};
+
 export const detailsProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.PRODUCT_DETAILS_REQUEST, payload: productId });

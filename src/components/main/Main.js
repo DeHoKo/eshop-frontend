@@ -8,11 +8,15 @@ import Back from "./back/Back";
 import Cart from "./cart/Cart";
 import Signin from "./signin/Signin";
 import Register from "./register/Register";
+import AddProduct from "./addProduct/AddProduct";
 
 const Main = () => {
   return (
     <main className="min-h-screen">
       <Switch>
+        <Route path="/products">
+          <AddProduct />
+        </Route>
         <Route path="/register">
           <Register />
         </Route>
