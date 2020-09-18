@@ -14,6 +14,10 @@ const Main = () => {
   return (
     <main className="min-h-screen">
       <Switch>
+        <Route path="/products/:id">
+          <Back />
+          <Product />
+        </Route>
         <Route path="/products">
           <AddProduct />
         </Route>
@@ -22,10 +26,6 @@ const Main = () => {
         </Route>
         <Route path="/signin">
           <Signin />
-        </Route>
-        <Route path="/products/:id">
-          <Back />
-          <Product />
         </Route>
         <Route path="/cart">
           <Back />
