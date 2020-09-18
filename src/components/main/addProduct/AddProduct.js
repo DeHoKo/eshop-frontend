@@ -40,6 +40,15 @@ const AddProduct = () => {
         quantity,
       })
     );
+    setCategory("");
+    setBrand("");
+    setModel("");
+    setImage("");
+    setPrice("");
+    setColor("");
+    setSizes("");
+    setTags("");
+    setQuantity("");
   };
 
   return (
