@@ -19,11 +19,48 @@ export const saveProduct = (product) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const data = await axios.post(url + "/api/products", product, {
-      headers: {
-        Authorization: "Bearer " + userInfo.token,
-      },
-    });
+    let data;
+    if (product._id) {
+      data = await axios.put(
+        url + "/api/products/" + product._id,
+        {
+          category: product.category,
+          brand: product.brand,
+          model: product.model,
+          image: product.image,
+          price: product.price,
+          color: product.color,
+          newSizes: product.newSizes,
+          newTags: product.newTags,
+          quantity: product.quantity,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + userInfo.token,
+          },
+        }
+      );
+    } else {
+      data = await axios.post(
+        url + "/api/products",
+        {
+          category: product.category,
+          brand: product.brand,
+          model: product.model,
+          image: product.image,
+          price: product.price,
+          color: product.color,
+          newSizes: product.newSizes,
+          newTags: product.newTags,
+          quantity: product.quantity,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + userInfo.token,
+          },
+        }
+      );
+    }
     dispatch({ type: actionTypes.PRODUCT_SAVE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: actionTypes.PRODUCT_SAVE_FAIL, payload: error.message });
@@ -38,6 +75,26 @@ export const detailsProduct = (productId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: actionTypes.PRODUCT_DETAILS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const deleteProduct = (productId) => async (dispatch, getState) => {
+  try {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    dispatch({ type: actionTypes.PRODUCT_DELETE_REQUEST, payload: productId });
+    const data = await axios.delete(url + "/api/products/" + productId, {
+      headers: {
+        Authorization: "Bearer " + userInfo.token,
+      },
+    });
+    dispatch({ type: actionTypes.PRODUCT_DELETE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.PRODUCT_DELETE_FAIL,
       payload: error.message,
     });
   }
