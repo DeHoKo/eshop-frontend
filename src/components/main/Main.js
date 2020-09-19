@@ -12,7 +12,7 @@ import AddProduct from "./addProduct/AddProduct";
 
 const Main = () => {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
       <Switch>
         <Route path="/products/:id">
           <Back />
