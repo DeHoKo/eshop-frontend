@@ -4,7 +4,7 @@ const Steps = (props) => {
   const base =
     "inline-block rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2";
   return (
-    <div className="flex justify-between mb-2">
+    <div className="flex justify-between mb-2 w-full max-w-md mx-auto">
       <div
         className={props.step1 ? base + " bg-green-200" : base + " bg-gray-200"}
       >

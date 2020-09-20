@@ -9,13 +9,17 @@ import Cart from "./cart/Cart";
 import Signin from "./signin/Signin";
 import Register from "./register/Register";
 import AddProduct from "./addProduct/AddProduct";
-import Shipping from "./shipping/shipping";
+import Shipping from "./shipping/Shipping";
 import Payment from "./payment/Payment";
+import PlaceOrder from "./placeOrder/PlaceOrder";
 
 const Main = () => {
   return (
     <main className="min-h-screen relative">
       <Switch>
+        <Route path="/placeorder">
+          <PlaceOrder />
+        </Route>
         <Route path="/payment">
           <Payment />
         </Route>

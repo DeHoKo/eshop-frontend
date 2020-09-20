@@ -16,7 +16,10 @@ import cookies from "js-cookie";
 const cartItems = cookies.getJSON("cartItems") || [];
 const userInfo = cookies.getJSON("userInfo") || null;
 
-const initialState = { cart: { cartItems }, userSignin: { userInfo } };
+const initialState = {
+  cart: { cartItems, shipping: {}, payment: "" },
+  userSignin: { userInfo },
+};
 
 const reducer = combineReducers({
   productList: productListReducer,
