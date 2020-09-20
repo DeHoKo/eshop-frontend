@@ -47,3 +47,7 @@ export const removeFromCart = (productId) => (dispatch, getState) => {
 export const saveShipping = (data) => (dispatch) => {
   dispatch({ type: actionTypes.CART_SAVE_SHIPPING, payload: data });
 };
+
+export const savePayment = (data) => (dispatch) => {
+  dispatch({ type: actionTypes.CART_SAVE_PAYMENT, payload: data });
+};

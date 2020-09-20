@@ -10,11 +10,15 @@ import Signin from "./signin/Signin";
 import Register from "./register/Register";
 import AddProduct from "./addProduct/AddProduct";
 import Shipping from "./shipping/shipping";
+import Payment from "./payment/Payment";
 
 const Main = () => {
   return (
     <main className="min-h-screen relative">
       <Switch>
+        <Route path="/payment">
+          <Payment />
+        </Route>
         <Route path="/products/:id">
           <Back />
           <Product />
