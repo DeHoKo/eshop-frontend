@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { addOrder } from "../../../store/actions/cartActions";
 import Steps from "../steps/Steps";
 
 const PlaceOrder = () => {
@@ -13,9 +14,13 @@ const PlaceOrder = () => {
   if (!payment) {
     history.push("/payment");
   }
-
+  let totalPrice = 0;
+  if (cartItems) {
+    totalPrice = cartItems.reduce((accum, value) => accum + value.price, 0);
+  }
   const placeOrderHandler = () => {
-    history.push("/signin?redirect=shipping");
+    dispatch(addOrder({ cartItems, totalPrice, shipping }));
+    history.push("/");
   };
 
   return (
@@ -59,10 +64,7 @@ const PlaceOrder = () => {
       ) : null}
       <div className="flex justify-end items-center h-16">
         {cartItems.length > 0 ? (
-          <span className="font-bold">
-            Total price:{" "}
-            {cartItems.reduce((accum, value) => accum + value.price, 0)}$
-          </span>
+          <span className="font-bold">Total price: {totalPrice}$</span>
         ) : (
           <span>Add items to cart</span>
         )}

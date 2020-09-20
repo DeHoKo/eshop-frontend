@@ -29,6 +29,12 @@ export const cartReducer = (
       return { ...state, shipping: action.payload };
     case actionTypes.CART_SAVE_PAYMENT:
       return { ...state, payment: action.payload };
+    case actionTypes.CART_ORDER_ADD_REQUEST:
+      return { loading: true };
+    case actionTypes.CART_ORDER_ADD_SUCCESS:
+      return { loading: false, success: true, state };
+    case actionTypes.CART_ORDER_ADD_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

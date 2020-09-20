@@ -51,3 +51,30 @@ export const saveShipping = (data) => (dispatch) => {
 export const savePayment = (data) => (dispatch) => {
   dispatch({ type: actionTypes.CART_SAVE_PAYMENT, payload: data });
 };
+
+export const addOrder = (order) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: actionTypes.CART_ORDER_ADD_REQUEST });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    let data;
+    data = await axios.post(
+      url + "/api/orders",
+      {
+        products: order.cartItems,
+        price: order.totalPrice,
+        shipping: order.shipping,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + userInfo.token,
+        },
+      }
+    );
+    dispatch({ type: actionTypes.CART_ORDER_ADD_SUCCESS, payload: data });
+    cookie.set("cartItems", []);
+  } catch (error) {
+    dispatch({ type: actionTypes.CART_ORDER_ADD_FAIL, payload: error.message });
+  }
+};
