@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signin } from "../../../store/actions/userActions";
 
@@ -8,13 +8,16 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const location = useLocation();
   const userSignin = useSelector((state) => state.userSignin);
+
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const { loading, userInfo, error } = userSignin;
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/");
+      history.push(redirect);
     }
   }, [userInfo]);
 
@@ -72,9 +75,8 @@ const Signin = () => {
             Sign In
           </button>
           <Link
-            to="/register"
+            to={redirect === "/" ? "register" : "register?redirect=" + redirect}
             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#"
           >
             New here?
           </Link>
