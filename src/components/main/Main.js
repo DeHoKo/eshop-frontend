@@ -9,6 +9,7 @@ import Cart from "./cart/Cart";
 import Signin from "./signin/Signin";
 import Register from "./register/Register";
 import AddProduct from "./addProduct/AddProduct";
+import Shipping from "./shipping/shipping";
 
 const Main = () => {
   return (
@@ -17,6 +18,9 @@ const Main = () => {
         <Route path="/products/:id">
           <Back />
           <Product />
+        </Route>
+        <Route path="/shipping">
+          <Shipping />
         </Route>
         <Route path="/products">
           <AddProduct />
